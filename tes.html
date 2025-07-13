@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Playlist Lagu SidZ</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1e1e2f;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .song-button {
+      padding: 15px 40px;
+      border: 3px solid #b400f4;
+      border-radius: 25px;
+      background-color: transparent;
+      color: #b400f4;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s ease;
+      width: 250px;
+      text-align: center;
+    }
+
+    .song-button:hover {
+      background-color: #b400f4;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    #now-playing {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    audio {
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Playlist Lagu sIdZ</h1>
+
+  <div class="button-container">
+    <button class="song-button" onclick="playSong('Tarot')">Tarot</button>
+    <button class="song-button" onclick="playSong('Ransom')">Ransom</button>
+    <button class="song-button" onclick="playSong('Jakarta Hari Ini')">Jakarta hari ini</button>
+    <button class="song-button" onclick="playSong('Film Favorit')">Film favorit</button>
+  </div>
+
+  <div id="now-playing">Klik lagu untuk diputar</div>
+  <audio id="audio-player" controls></audio>
+
+  <script>
+    const audioPlayer = document.getElementById("audio-player");
+    const nowPlaying = document.getElementById("now-playing");
+
+    const songMap = {
+      "Tarot": "songs/Tarot.mp3",
+      "Ransom": "songs/Ransom.mp3",
+      "Jakarta Hari Ini": "songs/Jakarta-hari-ini.mp3",
+      "Film Favorit": "songs/Film-favorit.mp3"
+    };
+
+    function playSong(songName) {
+      const filePath = songMap[songName];
+
+      if (!filePath) {
+        alert("Lagu belum tersedia.");
+        return;
+      }
+
+      audioPlayer.src = filePath;
+      audioPlayer.play();
+      nowPlaying.textContent = "Sedang Memutar: " + songName;
+    }
+  </script>
+
+</body>
+</html>
